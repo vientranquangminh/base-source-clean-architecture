@@ -20,9 +20,9 @@ class _GetJokeScreenState extends State<GetJokeScreen> {
 
   @override
   void initState() {
-    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
-      getJoke('programming');
-    });
+    // WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+    //   getJoke('programming');
+    // });
     super.initState();
   }
 
@@ -38,7 +38,24 @@ class _GetJokeScreenState extends State<GetJokeScreen> {
           listenAction(state.loadingStatus);
         },
         builder: ((BuildContext context, JokeState state) {
-          return Text(state.joke?.type ?? '');
+          return Center(
+            child: Column(
+              children: [
+                Text(state.joke?.type ?? ''),
+                const SizedBox(
+                  height: 20.0,
+                ),
+                ElevatedButton(
+                    onPressed: state.loadingStatus == LoadingStatus.loading
+                        ? null
+                        : () {
+                            getJoke('programming');
+                            log('>.<');
+                          },
+                    child: const Text('Touch me'))
+              ],
+            ),
+          );
         }),
       ),
       floatingActionButton: FloatingActionButton(onPressed: () {

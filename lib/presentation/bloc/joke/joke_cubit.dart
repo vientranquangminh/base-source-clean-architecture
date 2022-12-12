@@ -17,6 +17,7 @@ class JokeCubit extends Cubit<JokeState> {
     try {
       emit(state.copyWith(loadingStatus: LoadingStatus.loading));
       final response = await _getJokeUseCase(category);
+      await Future.delayed(const Duration(seconds: 2));
       emit(
           state.copyWith(joke: response, loadingStatus: LoadingStatus.success));
       return response;
