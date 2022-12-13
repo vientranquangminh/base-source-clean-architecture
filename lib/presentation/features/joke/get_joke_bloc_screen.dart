@@ -18,15 +18,22 @@ class GetJokeBlocScreen extends StatelessWidget {
           builder: ((context, state) {
             return Column(
               children: [
-                const SizedBox(height: 30,),
+                const SizedBox(
+                  height: 30,
+                ),
                 genWid(state),
-                const SizedBox(height: 30,),
-                ElevatedButton(
-                  onPressed: state is LoadingState ? null : () {
-                    injector.get<JokeBloc>().add(LoadJokeEvent());
-                  },
-                  child: const Text('Get'),
-                )
+                const SizedBox(
+                  height: 30,
+                ),
+                if (state is InitialState || state is SuccessState)
+                  ElevatedButton(
+                    onPressed: state is LoadingState
+                        ? null
+                        : () {
+                            injector.get<JokeBloc>().add(LoadJokeEvent());
+                          },
+                    child: const Text('Get'),
+                  )
               ],
             );
           }),
@@ -35,14 +42,16 @@ class GetJokeBlocScreen extends StatelessWidget {
     );
   }
 
-  Widget genWid(JokeState state){
-    if(state is LoadingState){
-      return const Center(child: CircularProgressIndicator(),);
+  Widget genWid(JokeState state) {
+    if (state is LoadingState) {
+      return const Center(
+        child: CircularProgressIndicator(),
+      );
     }
-    if(state is SuccessState){
+    if (state is SuccessState) {
       return Text('${state.joke.type}');
     }
-    if(state is FailedState){
+    if (state is FailedState) {
       return Text(state.errorString);
     }
     return Container();
