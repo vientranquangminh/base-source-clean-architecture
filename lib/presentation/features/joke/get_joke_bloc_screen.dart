@@ -30,7 +30,7 @@ class GetJokeBlocScreen extends StatelessWidget {
                     onPressed: state is LoadingState
                         ? null
                         : () {
-                            injector.get<JokeBloc>().add(LoadJokeEvent());
+                            injector.get<JokeBloc>().add(LoadJokeEvent(''));
                           },
                     child: const Text('Get'),
                   )

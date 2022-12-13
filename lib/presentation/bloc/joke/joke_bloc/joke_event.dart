@@ -6,6 +6,8 @@ abstract class JokeEvent extends Equatable {
 }
 
 class LoadJokeEvent extends JokeEvent {
+  final String category;
+  const LoadJokeEvent(this.category);
   @override
   List<Object> get props => [];
 }

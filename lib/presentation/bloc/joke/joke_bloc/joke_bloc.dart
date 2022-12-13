@@ -12,13 +12,19 @@ class JokeBloc extends Bloc<JokeEvent, JokeState>{
 
   JokeBloc(this._getJokeUseCase): super(InitialState()){
     on<LoadJokeEvent>((event, emit) async {
-      emit(LoadingState());
+      await _handle(event, emit);
+    });
+
+    // on<LoadSomething>((event, emit)): super(initState)) async { await function(); }
+  }
+
+  Future<void> _handle(event, emit) async {
+    emit(LoadingState());
       try{
-        final Joke joke = await _getJokeUseCase('programming');
+        final Joke joke = await _getJokeUseCase(event.category);
         emit(SuccessState(joke));
       } catch(e){
         emit(FailedState(e.toString()));
       }
-    });
   }
 }
