@@ -4,6 +4,8 @@ import 'package:own_inbox_app/injection/infra_injection.dart';
 import 'package:own_inbox_app/injection/repository_injetion.dart';
 import 'package:own_inbox_app/injection/use_case_injection.dart';
 
+import 'cubit_injection.dart';
+
 GetIt injector = GetIt.instance;
 
 Future<void> initDependenciesInjection() async {
@@ -17,5 +19,8 @@ Future<void> initDependenciesInjection() async {
   UserCaseInjection.inject();
 
   // cubit
+  CubitInjection.inject();
+
+  // bloc
   BlocInjection.inject();
 }

@@ -2,12 +2,14 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:own_inbox_app/presentation/features/auth/login/pages/login_page.dart';
 import 'package:own_inbox_app/presentation/features/home/pages/home_page.dart';
+import 'package:own_inbox_app/presentation/features/joke/get_joke_bloc_screen.dart';
 import 'package:own_inbox_app/presentation/features/joke/get_joke_screen.dart';
 
 class RouterName {
   static const String home = '/home';
   static const String login = '/login';
   static const String joke = '/getJoke';
+  static const String jokeBloc = '/getJokeBloc';
 }
 
 class AppRoutes {
@@ -22,6 +24,8 @@ class AppRoutes {
         return _materialRoute(settings, const LoginPage());
       case RouterName.joke:
         return _materialRoute(settings, const GetJokeScreen());
+      case RouterName.jokeBloc:
+        return _materialRoute(settings, const GetJokeBlocScreen());
     }
     return null;
   }

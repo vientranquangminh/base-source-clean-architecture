@@ -7,6 +7,8 @@ import 'package:own_inbox_app/domain/entities/joke.dart';
 import 'package:own_inbox_app/injection/injector.dart';
 import 'package:own_inbox_app/presentation/bloc/joke/joke_cubit.dart';
 import 'package:own_inbox_app/presentation/enums/loading_status.dart';
+import 'package:own_inbox_app/router/app_router.dart';
+import 'package:own_inbox_app/router/navigator.dart';
 
 class GetJokeScreen extends StatefulWidget {
   const GetJokeScreen({super.key});
@@ -41,8 +43,10 @@ class _GetJokeScreenState extends State<GetJokeScreen> {
           return Text(state.joke?.type ?? '');
         }),
       ),
-      floatingActionButton: FloatingActionButton(onPressed: () {
-        log('message');
+      floatingActionButton: FloatingActionButton(
+        child: const Icon(Icons.navigate_next_sharp),
+        onPressed: () {
+        AppNavigator.pushNamed(RouterName.jokeBloc);
       }),
     );
   }
