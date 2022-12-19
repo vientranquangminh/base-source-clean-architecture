@@ -11,6 +11,8 @@ class JokeBloc extends Bloc<JokeEvent, JokeState>{
   final GetJokeUseCase _getJokeUseCase;
 
   JokeBloc(this._getJokeUseCase): super(InitialState()){
+
+    // handle multiple events
     on<LoadJokeEvent>((event, emit) async {
       await _handle(event, emit);
     });
